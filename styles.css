@@ -931,19 +931,15 @@ footer .logo-name em { color: rgba(255,255,255,0.55); }
   }
   html[dir="rtl"] .nav-links li + li { border-right: none; }
   .nav-links a,
-  html[dir="rtl"] .nav-links a {
+  html[dir="rtl"] .nav-links a,
+  .nav-menu-panel .lang-toggle,
+  html[dir="rtl"] .nav-menu-panel .lang-toggle {
     font-size: 16px !important;
     padding: 14px 4px;
     font-weight: 600;
   }
-  .nav-top-bar .lang-toggle {
-    font-size: 14px !important;
-    padding: 8px 10px;
-    border: 1px solid var(--c-border);
-    border-radius: var(--r-sm);
-    background: var(--c-off);
-    white-space: nowrap;
-  }
+  .nav-top-bar .level-dropdown,
+  .nav-top-bar .lang-toggle { display: none !important; }
   .level-dropdown { width: 100%; }
   .level-dropdown-btn,
   html[dir="rtl"] .level-dropdown-btn {

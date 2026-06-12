@@ -12,7 +12,6 @@ function setupMobileNavLayout() {
   const navInner = document.querySelector('.nav-inner');
   const headerCenter = document.querySelector('.header-center');
   const langToggle = document.getElementById('langToggle');
-  const navActions = document.querySelector('.nav-actions');
   if (!navEl || !navInner || !headerCenter) return;
 
   if (!window.__navMobileStore) {
@@ -52,8 +51,8 @@ function setupMobileNavLayout() {
     window.__navMobileStore = {
       langParent: langToggle?.parentElement,
       langNext: langToggle?.nextSibling,
-      actionsParent: navActions?.parentElement,
-      actionsNext: navActions?.nextSibling,
+      cartParent: document.getElementById('cartWrap')?.parentElement,
+      cartNext: document.getElementById('cartWrap')?.nextSibling,
       toggle,
       topBar,
     };
@@ -69,8 +68,16 @@ function setupMobileNavLayout() {
   }
 
   function applyMobile() {
-    if (langToggle && !topBar.contains(langToggle)) topBar.appendChild(langToggle);
-    if (navActions && !topBar.contains(navActions)) topBar.appendChild(navActions);
+    const cartWrap = document.getElementById('cartWrap');
+    const navLinks = headerCenter.querySelector('.nav-links');
+
+    if (cartWrap && !topBar.contains(cartWrap)) topBar.appendChild(cartWrap);
+    if (langToggle && store.langParent && langToggle.parentElement !== store.langParent) {
+      store.langParent.appendChild(langToggle);
+    }
+    if (store.langParent && navLinks && !navLinks.contains(store.langParent)) {
+      navLinks.appendChild(store.langParent);
+    }
     if (!topBar.contains(toggle)) topBar.appendChild(toggle);
     if (!navInner.contains(topBar)) navInner.insertBefore(topBar, headerCenter);
     headerCenter.classList.add('nav-menu-panel');
@@ -80,11 +87,12 @@ function setupMobileNavLayout() {
   function applyDesktop() {
     closeMenu();
     headerCenter.classList.remove('nav-menu-panel');
+    const cartWrap = document.getElementById('cartWrap');
     if (store.langParent && langToggle && langToggle.parentElement !== store.langParent) {
       store.langParent.insertBefore(langToggle, store.langNext);
     }
-    if (store.actionsParent && navActions && navActions.parentElement !== store.actionsParent) {
-      store.actionsParent.insertBefore(navActions, store.actionsNext);
+    if (store.cartParent && cartWrap && cartWrap.parentElement !== store.cartParent) {
+      store.cartParent.insertBefore(cartWrap, store.cartNext);
     }
     if (topBar.parentElement) topBar.remove();
   }
