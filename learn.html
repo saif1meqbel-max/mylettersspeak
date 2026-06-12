@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn — MyLettersSpeak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page-title="title.learn">
+
+<div class="page-letter-rain" id="rainCanvas" aria-hidden="true"></div>
+<div class="page-content">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+      <div class="logo-text">
+        <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        <span class="logo-tagline" data-i18n="nav.tagline">Where Letters Come Alive</span>
+      </div>
+    </a>
+    <div class="header-center">
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="curriculum.html" data-i18n="nav.curriculum">Curriculum</a></li>
+        <li><a href="store.html" data-i18n="nav.store">Store</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><button type="button" id="langToggle" class="lang-toggle nav-arabic" data-i18n="nav.lang.ar">العربية</button></li>
+      </ul>
+      <div class="header-search">
+        <input type="search" placeholder="Search…" aria-label="Search site" data-i18n-placeholder="nav.search" data-i18n-aria="nav.search" />
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="nav-actions">
+        <div class="level-dropdown" id="levelDropdown">
+          <button type="button" class="level-dropdown-btn" id="levelDropdownBtn" data-i18n="nav.selectLevel" aria-expanded="false" aria-haspopup="true">Select a Level ▾
+          </button>
+          <ul class="level-dropdown-menu" role="menu">
+            <li role="none"><a href="curriculum.html#level-1" role="menuitem" data-i18n="nav.l1">Level 1 — Al-Huroof<span data-i18n="nav.l1sub">28 letters, all forms, pronunciation</span></a></li>
+            <li role="none"><a href="curriculum.html#level-2" role="menuitem" data-i18n="nav.l2">Level 2 — Al-Kalimat<span data-i18n="nav.l2sub">Vowels, joining rules, first vocabulary</span></a></li>
+            <li role="none"><a href="curriculum.html#level-3" role="menuitem" data-i18n="nav.l3">Level 3 — Al-Jumla<span data-i18n="nav.l3sub">Grammar patterns, sentence building</span></a></li>
+            <li role="none"><a href="curriculum.html#level-4" role="menuitem" data-i18n="nav.l4">Level 4 — Al-Nass<span data-i18n="nav.l4sub">Reading passages with comprehension</span></a></li>
+            <li role="none"><a href="curriculum.html#level-5" role="menuitem" data-i18n="nav.l5">Level 5 — Al-Fasaha<span data-i18n="nav.l5sub">Fluent reading, writing, and expression</span></a></li>
+          </ul>
+        </div>
+        <div class="cart-wrap" id="cartWrap">
+          <button type="button" class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="cartPanel" data-i18n-aria="cart.label" aria-label="Shopping cart">
+            <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/><path d="M6 6L5 3H2"/>
+            </svg>
+            <span class="cart-count" id="cartCount" hidden>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer" id="cartPanel" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" data-i18n="cart.title">Your Cart</h2>
+      <button type="button" class="cart-close" id="cartClose" data-i18n-aria="cart.close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body" id="cartItems"></div>
+    <div class="cart-drawer-footer" id="cartFooter" hidden>
+      <div class="cart-total-row"><span data-i18n="cart.total">Total</span><strong id="cartTotal">AED 0</strong></div>
+      <a href="checkout.html" class="btn btn-primary btn-lg cart-checkout" data-i18n="cart.checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+</nav>
+
+<header class="page-hero hero-yellow">
+  <span class="page-hero-label" data-i18n="learn.heroLabel">What We Offer</span>
+  <h1 class="page-hero-title" data-i18n="learn.heroTitle">Everything a Child Needs to Love Arabic.</h1>
+  <p class="page-hero-sub t-arabic" data-i18n="learn.heroSub">تعلَّم العربيةَ كما ينبغي</p>
+</header>
+<section class="values-section" id="learn">
+  <div class="container">
+    <p class="section-body center" data-reveal style="max-width:640px;margin:0 auto var(--space-8)" data-i18n="learn.intro">
+      The حروفي تتكلم curriculum is a new, innovative approach to teaching phonics and reading — rich with choices, challenges, skills, and each student's preferred learning styles.
+    </p>
+    <div class="audience-header" data-reveal style="margin-bottom:var(--space-7)">
+      <span class="section-label" data-i18n="learn.audienceLabel">Who It's For</span>
+      <h2 class="section-title" style="font-size:clamp(24px,4vw,32px)" data-i18n="learn.audienceTitle">Every Learner, Every Starting Point.</h2>
+    </div>
+    <div class="audience-grid" style="margin-bottom:var(--space-9)">
+      <div class="audience-card" data-reveal data-delay="1"><div class="audience-icon">🌱</div><p data-i18n="learn.a1">Preschool &amp; kindergarten students</p></div>
+      <div class="audience-card" data-reveal data-delay="2"><div class="audience-icon">🌍</div><p data-i18n="learn.a2">Beginners and non-native Arabic speakers</p></div>
+      <div class="audience-card" data-reveal data-delay="3"><div class="audience-icon">💡</div><p data-i18n="learn.a3">Students with learning difficulties</p></div>
+      <div class="audience-card" data-reveal data-delay="4"><div class="audience-icon">📖</div><p data-i18n="learn.a4">All students building reading &amp; writing efficiency</p></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-reveal data-delay="1">
+        <div class="value-icon-wrap ic-blue">ا</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v1title">Letter-by-Letter Foundation</div>
+          <p class="value-desc" data-i18n="learn.v1desc">Every letter mastered in all positional forms before the next begins. No shortcuts.</p>
+        </div>
+      </div>
+      <div class="value-card" data-reveal data-delay="2">
+        <div class="value-icon-wrap ic-red">ص</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v2title">Correct Pronunciation First</div>
+          <p class="value-desc" data-i18n="learn.v2desc">Arabic phonemes taught precisely before reading — habits that last a lifetime.</p>
+        </div>
+      </div>
+      <div class="value-card" data-reveal data-delay="3">
+        <div class="value-icon-wrap ic-green">ك</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v3title">Reading &amp; Writing in Parallel</div>
+          <p class="value-desc" data-i18n="learn.v3desc">Handwriting and reading reinforce each other at every stage of the journey.</p>
+        </div>
+      </div>
+      <div class="value-card" data-reveal data-delay="4">
+        <div class="value-icon-wrap ic-yellow">م</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v4title">Built for Children</div>
+          <p class="value-desc" data-i18n="learn.v4desc">Short lessons, colorful workbooks, activities that feel like play — not work.</p>
+        </div>
+      </div>
+      <div class="value-card" data-reveal data-delay="5">
+        <div class="value-icon-wrap ic-blue">ق</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v5title">Visible Progress</div>
+          <p class="value-desc" data-i18n="learn.v5desc">Clear milestones at every level. Parents always know exactly where their child stands.</p>
+        </div>
+      </div>
+      <div class="value-card" data-reveal data-delay="6">
+        <div class="value-icon-wrap ic-red">ع</div>
+        <div class="value-content">
+          <div class="value-title" data-i18n="learn.v6title">Classical from Day One</div>
+          <p class="value-desc" data-i18n="learn.v6desc">The language of the Quran and civilization — not a dialect. Authentic from the start.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta" style="text-align:center;margin-top:var(--space-8)" data-reveal>
+      <a href="curriculum.html" class="btn btn-primary btn-lg" data-i18n="learn.cta">Explore the Curriculum →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo">
+          <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+          <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        </a>
+        <p class="footer-brand-desc" data-i18n="footer.desc">A structured, joyful Arabic curriculum built for children — from the very first letter to confident reading and writing.</p>
+        <div class="footer-socials">
+          <div class="social-icon" title="Instagram">📸</div>
+          <div class="social-icon" title="YouTube">▶</div>
+          <div class="social-icon" title="TikTok">♪</div>
+          <div class="social-icon" title="Facebook">f</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.learn">Learn</div>
+        <ul class="footer-links">
+          <li><a href="curriculum.html" data-i18n="footer.curriculumOverview">Curriculum Overview</a></li>
+          <li><a href="curriculum.html#level-1" data-i18n="footer.level1">Level 1 — The Letters</a></li>
+          <li><a href="learn.html" data-i18n="footer.whatWeOffer">What We Offer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.shop">Shop</div>
+        <ul class="footer-links">
+          <li><a href="store.html">حروفي العربية</a></li>
+          <li><a href="store.html">دراما الحروف</a></li>
+          <li><a href="store.html">قصص الحروف</a></li>
+          <li><a href="store.html">شجرة الحروف</a></li>
+          <li><a href="store.html">خطي الجميل</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.company">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-i18n="footer.aboutFounder">About the Founder</a></li>
+          <li><a href="about.html" data-i18n="footer.ourMethod">Our Method</a></li>
+          <li><a href="contact.html" data-i18n="footer.contactUs">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 MyLettersSpeak · All rights reserved</span>
+      <span class="footer-arabic">بسم الله الرحمن الرحيم</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

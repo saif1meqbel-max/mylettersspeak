@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — MyLettersSpeak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page-title="title.about">
+
+<div class="page-letter-rain" id="rainCanvas" aria-hidden="true"></div>
+<div class="page-content">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+      <div class="logo-text">
+        <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        <span class="logo-tagline" data-i18n="nav.tagline">Where Letters Come Alive</span>
+      </div>
+    </a>
+    <div class="header-center">
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" class="active" data-i18n="nav.about">About</a></li>
+        <li><a href="curriculum.html" data-i18n="nav.curriculum">Curriculum</a></li>
+        <li><a href="store.html" data-i18n="nav.store">Store</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><button type="button" id="langToggle" class="lang-toggle nav-arabic" data-i18n="nav.lang.ar">العربية</button></li>
+      </ul>
+      <div class="header-search">
+        <input type="search" placeholder="Search…" aria-label="Search site" data-i18n-placeholder="nav.search" data-i18n-aria="nav.search" />
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="nav-actions">
+        <div class="level-dropdown" id="levelDropdown">
+          <button type="button" class="level-dropdown-btn" id="levelDropdownBtn" data-i18n="nav.selectLevel" aria-expanded="false" aria-haspopup="true">Select a Level ▾
+          </button>
+          <ul class="level-dropdown-menu" role="menu">
+            <li role="none"><a href="curriculum.html#level-1" role="menuitem" data-i18n="nav.l1">Level 1 — Al-Huroof<span data-i18n="nav.l1sub">28 letters, all forms, pronunciation</span></a></li>
+            <li role="none"><a href="curriculum.html#level-2" role="menuitem" data-i18n="nav.l2">Level 2 — Al-Kalimat<span data-i18n="nav.l2sub">Vowels, joining rules, first vocabulary</span></a></li>
+            <li role="none"><a href="curriculum.html#level-3" role="menuitem" data-i18n="nav.l3">Level 3 — Al-Jumla<span data-i18n="nav.l3sub">Grammar patterns, sentence building</span></a></li>
+            <li role="none"><a href="curriculum.html#level-4" role="menuitem" data-i18n="nav.l4">Level 4 — Al-Nass<span data-i18n="nav.l4sub">Reading passages with comprehension</span></a></li>
+            <li role="none"><a href="curriculum.html#level-5" role="menuitem" data-i18n="nav.l5">Level 5 — Al-Fasaha<span data-i18n="nav.l5sub">Fluent reading, writing, and expression</span></a></li>
+          </ul>
+        </div>
+        <div class="cart-wrap" id="cartWrap">
+          <button type="button" class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="cartPanel" data-i18n-aria="cart.label" aria-label="Shopping cart">
+            <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/><path d="M6 6L5 3H2"/>
+            </svg>
+            <span class="cart-count" id="cartCount" hidden>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer" id="cartPanel" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" data-i18n="cart.title">Your Cart</h2>
+      <button type="button" class="cart-close" id="cartClose" data-i18n-aria="cart.close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body" id="cartItems"></div>
+    <div class="cart-drawer-footer" id="cartFooter" hidden>
+      <div class="cart-total-row"><span data-i18n="cart.total">Total</span><strong id="cartTotal">AED 0</strong></div>
+      <a href="checkout.html" class="btn btn-primary btn-lg cart-checkout" data-i18n="cart.checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+</nav>
+
+<header class="page-hero hero-red">
+  <span class="page-hero-label" data-i18n="about.heroLabel">About Us</span>
+  <h1 class="page-hero-title" data-i18n="about.heroTitle">A Master Educator Who Loves Children.</h1>
+  <p class="page-hero-sub" data-i18n="about.heroSub">20+ years teaching Arabic — rooted in classical tradition, built for modern families.</p>
+</header>
+<section class="founder-section" id="about">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-visual" data-reveal="left">
+        <div class="founder-photo-frame">
+          <img class="founder-photo-img" src="assets/founder/nahid-tuffaha.png" alt="Nahed Tuffaha" data-i18n-alt="about.founderName" />
+          <div class="founder-photo-overlay">
+            <div class="founder-photo-name" data-i18n="about.founderName">Nahed Tuffaha</div>
+            <div class="founder-photo-title" data-i18n="about.founderTitle">M.Ed · Author · Arabic Teacher, DESS School Dubai</div>
+          </div>
+        </div>
+        <div class="founder-badge-card bc2">
+          <div class="badge-emoji">🎓</div>
+          <div>
+            <div class="badge-info-main" data-i18n="about.badge1main">Ijazah Certified</div>
+            <div class="badge-info-sub" data-i18n="about.badge1sub">Classical Arabic Language</div>
+          </div>
+        </div>
+        <div class="founder-badge-card bc1">
+          <div class="badge-emoji">📅</div>
+          <div>
+            <div class="badge-info-main" data-i18n="about.badge2main">Arabic Teacher</div>
+            <div class="badge-info-sub" data-i18n="about.badge2sub">DESS School, Dubai</div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="right" data-delay="1">
+        <span class="section-label" data-i18n="about.label">Meet Your Teacher</span>
+        <h2 class="section-title" data-i18n="about.title">A Master Educator Who Loves Children.</h2>
+        <blockquote class="founder-quote" data-i18n="about.quote">
+          "Arabic is not a subject to be studied. It is a world to be entered —
+          and every child deserves a guide who knows the way."
+        </blockquote>
+        <p class="founder-body" data-i18n="about.body1">
+          The journey began not in a classroom, but at home — seated beside a grandfather
+          who traced Arabic letters into the air with a patient, loving hand. That memory
+          became a mission.
+        </p>
+        <p class="founder-body" data-i18n="about.body2">
+          After earning an Ijazah in Arabic Language and spending over twenty years teaching
+          children, the frustration was clear: existing materials
+          either rushed the foundations or failed to engage young minds. MyLettersSpeak
+          was built to change that.
+        </p>
+        <div class="cred-grid">
+          <div class="cred-item"><span class="cred-icon">🎓</span><span class="cred-text" data-i18n="about.cred1">M.Ed — Liverpool Hope University, UK</span></div>
+          <div class="cred-item"><span class="cred-icon">📜</span><span class="cred-text" data-i18n="about.cred2">B.Ed — Hashemite University, Jordan</span></div>
+          <div class="cred-item"><span class="cred-icon">🏫</span><span class="cred-text" data-i18n="about.cred3">Arabic Teacher, DESS School, Dubai</span></div>
+          <div class="cred-item"><span class="cred-icon">📖</span><span class="cred-text" data-i18n="about.cred4">Author of 5 educational book series</span></div>
+          <div class="cred-item"><span class="cred-icon">📅</span><span class="cred-text" data-i18n="about.cred5">20+ years teaching Arabic in Jordan &amp; UAE</span></div>
+          <div class="cred-item"><span class="cred-icon">🌍</span><span class="cred-text" data-i18n="about.cred6">International &amp; British schools experience</span></div>
+        </div>
+        <a href="contact.html" class="btn btn-primary btn-lg" data-i18n="about.cta">Get in Touch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="method-section" id="method">
+  <div class="container">
+    <div class="method-header">
+      <span class="section-label" data-reveal data-i18n="about.methodLabel">The Method</span>
+      <h2 class="section-title" data-reveal data-delay="1" data-i18n="about.methodTitle">Different by Design.</h2>
+      <p class="section-body center" data-reveal data-delay="2" data-i18n="about.methodSub">
+        Three principles that separate MyLettersSpeak from everything else your child has tried.
+      </p>
+    </div>
+    <div class="method-grid">
+      <div class="method-card" data-reveal data-delay="1">
+        <div class="method-num-bg">01</div>
+        <div class="method-icon">🔊</div>
+        <div class="method-title" data-i18n="about.m1title">Sound Before Sight</div>
+        <p class="method-desc" data-i18n="about.m1desc">Before a child reads a single letter, they learn how Arabic sounds live in the mouth. This phonological foundation prevents mispronunciation habits that take years to unlearn.</p>
+      </div>
+      <div class="method-card" data-reveal data-delay="2">
+        <div class="method-num-bg">02</div>
+        <div class="method-icon">🏗️</div>
+        <div class="method-title" data-i18n="about.m2title">Structure Before Speed</div>
+        <p class="method-desc" data-i18n="about.m2desc">We never rush. Each level is fully mastered before the next begins. Children build genuine understanding — not surface familiarity that crumbles under pressure.</p>
+      </div>
+      <div class="method-card" data-reveal data-delay="3">
+        <div class="method-num-bg">03</div>
+        <div class="method-icon">📈</div>
+        <div class="method-title" data-i18n="about.m3title">Progress Parents Can See</div>
+        <p class="method-desc" data-i18n="about.m3desc">Every milestone is visible and measurable. Parents and children always know exactly where they are, what they've accomplished, and what comes next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo">
+          <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+          <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        </a>
+        <p class="footer-brand-desc" data-i18n="footer.desc">A structured, joyful Arabic curriculum built for children — from the very first letter to confident reading and writing.</p>
+        <div class="footer-socials">
+          <div class="social-icon" title="Instagram">📸</div>
+          <div class="social-icon" title="YouTube">▶</div>
+          <div class="social-icon" title="TikTok">♪</div>
+          <div class="social-icon" title="Facebook">f</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.learn">Learn</div>
+        <ul class="footer-links">
+          <li><a href="curriculum.html" data-i18n="footer.curriculumOverview">Curriculum Overview</a></li>
+          <li><a href="curriculum.html#level-1" data-i18n="footer.level1">Level 1 — The Letters</a></li>
+          <li><a href="learn.html" data-i18n="footer.whatWeOffer">What We Offer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.shop">Shop</div>
+        <ul class="footer-links">
+          <li><a href="store.html">حروفي العربية</a></li>
+          <li><a href="store.html">دراما الحروف</a></li>
+          <li><a href="store.html">قصص الحروف</a></li>
+          <li><a href="store.html">شجرة الحروف</a></li>
+          <li><a href="store.html">خطي الجميل</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.company">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-i18n="footer.aboutFounder">About the Founder</a></li>
+          <li><a href="about.html" data-i18n="footer.ourMethod">Our Method</a></li>
+          <li><a href="contact.html" data-i18n="footer.contactUs">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 MyLettersSpeak · All rights reserved</span>
+      <span class="footer-arabic">بسم الله الرحمن الرحيم</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

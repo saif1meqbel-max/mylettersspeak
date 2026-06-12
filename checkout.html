@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — MyLettersSpeak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page-title="title.checkout">
+
+<div class="page-letter-rain" id="rainCanvas" aria-hidden="true"></div>
+<div class="page-content">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+      <div class="logo-text">
+        <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        <span class="logo-tagline" data-i18n="nav.tagline">Where Letters Come Alive</span>
+      </div>
+    </a>
+    <div class="header-center">
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="curriculum.html" data-i18n="nav.curriculum">Curriculum</a></li>
+        <li><a href="store.html" data-i18n="nav.store">Store</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><button type="button" id="langToggle" class="lang-toggle nav-arabic" data-i18n="nav.lang.ar">العربية</button></li>
+      </ul>
+      <div class="header-search">
+        <input type="search" placeholder="Search…" aria-label="Search site" data-i18n-placeholder="nav.search" data-i18n-aria="nav.search" />
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="nav-actions">
+        <div class="level-dropdown" id="levelDropdown">
+          <button type="button" class="level-dropdown-btn" id="levelDropdownBtn" data-i18n="nav.selectLevel" aria-expanded="false" aria-haspopup="true">Select a Level ▾</button>
+          <ul class="level-dropdown-menu" role="menu">
+            <li role="none"><a href="curriculum.html#level-1" role="menuitem" data-i18n="nav.l1">Level 1 — Al-Huroof<span data-i18n="nav.l1sub">28 letters, all forms, pronunciation</span></a></li>
+            <li role="none"><a href="curriculum.html#level-2" role="menuitem" data-i18n="nav.l2">Level 2 — Al-Kalimat<span data-i18n="nav.l2sub">Vowels, joining rules, first vocabulary</span></a></li>
+            <li role="none"><a href="curriculum.html#level-3" role="menuitem" data-i18n="nav.l3">Level 3 — Al-Jumla<span data-i18n="nav.l3sub">Grammar patterns, sentence building</span></a></li>
+            <li role="none"><a href="curriculum.html#level-4" role="menuitem" data-i18n="nav.l4">Level 4 — Al-Nass<span data-i18n="nav.l4sub">Reading passages with comprehension</span></a></li>
+            <li role="none"><a href="curriculum.html#level-5" role="menuitem" data-i18n="nav.l5">Level 5 — Al-Fasaha<span data-i18n="nav.l5sub">Fluent reading, writing, and expression</span></a></li>
+          </ul>
+        </div>
+        <div class="cart-wrap" id="cartWrap">
+          <button type="button" class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="cartPanel" data-i18n-aria="cart.label" aria-label="Shopping cart">
+            <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/><path d="M6 6L5 3H2"/>
+            </svg>
+            <span class="cart-count" id="cartCount" hidden>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer" id="cartPanel" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" data-i18n="cart.title">Your Cart</h2>
+      <button type="button" class="cart-close" id="cartClose" data-i18n-aria="cart.close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body" id="cartItems"></div>
+    <div class="cart-drawer-footer" id="cartFooter" hidden>
+      <div class="cart-total-row"><span data-i18n="cart.total">Total</span><strong id="cartTotal">AED 0</strong></div>
+      <a href="checkout.html" class="btn btn-primary btn-lg cart-checkout" data-i18n="cart.checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+</nav>
+
+<header class="page-hero page-hero-compact">
+  <span class="page-hero-label" data-i18n="checkout.heroLabel">Checkout</span>
+  <h1 class="page-hero-title" data-i18n="checkout.heroTitle">Complete Your Order</h1>
+  <p class="page-hero-sub" data-i18n="checkout.heroSub">Secure checkout for physical workbooks — delivered across the UAE.</p>
+</header>
+
+<section class="checkout-section page-main">
+  <div class="container">
+
+    <div class="checkout-empty" id="checkoutEmpty" hidden>
+      <div class="checkout-empty-inner">
+        <div class="checkout-empty-icon">📚</div>
+        <h2 data-i18n="checkout.emptyTitle">Your cart is empty</h2>
+        <p data-i18n="checkout.emptySub">Add some books from our store before checking out.</p>
+        <a href="store.html" class="btn btn-primary btn-lg" data-i18n="checkout.browseStore">Browse the Store</a>
+      </div>
+    </div>
+
+    <div class="checkout-success" id="checkoutSuccess" hidden>
+      <div class="checkout-success-inner">
+        <div class="checkout-success-icon">✓</div>
+        <h2 data-i18n="checkout.successTitle">Order Placed Successfully!</h2>
+        <p class="checkout-order-id"><span data-i18n="checkout.orderNum">Order number</span>: <strong id="orderNumber">—</strong></p>
+        <p data-i18n="checkout.successSub">Thank you for your order. We will contact you shortly to confirm delivery details and payment.</p>
+        <div class="checkout-success-actions">
+          <a href="store.html" class="btn btn-primary btn-lg" data-i18n="checkout.continueShopping">Continue Shopping</a>
+          <a href="index.html" class="btn btn-ghost btn-lg" data-i18n="nav.home">Home</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-layout" id="checkoutLayout">
+      <div class="checkout-form-wrap">
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <div class="checkout-block">
+            <h2 class="checkout-block-title" data-i18n="checkout.contactTitle">Contact Information</h2>
+            <div class="checkout-fields">
+              <label class="checkout-field">
+                <span data-i18n="checkout.fullName">Full name</span>
+                <input type="text" name="name" required autocomplete="name" data-i18n-placeholder="checkout.fullNamePh" placeholder="Full name" />
+              </label>
+              <label class="checkout-field">
+                <span data-i18n="checkout.email">Email</span>
+                <input type="email" name="email" required autocomplete="email" data-i18n-placeholder="checkout.emailPh" placeholder="you@example.com" />
+              </label>
+              <label class="checkout-field">
+                <span data-i18n="checkout.phone">Phone</span>
+                <input type="tel" name="phone" required autocomplete="tel" placeholder="+971 50 000 0000" />
+              </label>
+            </div>
+          </div>
+
+          <div class="checkout-block">
+            <h2 class="checkout-block-title" data-i18n="checkout.shippingTitle">Shipping Address</h2>
+            <div class="checkout-fields">
+              <label class="checkout-field">
+                <span data-i18n="checkout.emirate">Emirate</span>
+                <select name="emirate" required>
+                  <option value="" data-i18n="checkout.emiratePh">Select emirate</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Dubai">Dubai</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Umm Al Quwain">Umm Al Quwain</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                  <option value="Fujairah">Fujairah</option>
+                </select>
+              </label>
+              <label class="checkout-field checkout-field-full">
+                <span data-i18n="checkout.address">Street address</span>
+                <input type="text" name="address" required autocomplete="street-address" data-i18n-placeholder="checkout.addressPh" placeholder="Building, street, area" />
+              </label>
+              <label class="checkout-field">
+                <span data-i18n="checkout.city">City / Area</span>
+                <input type="text" name="city" required autocomplete="address-level2" data-i18n-placeholder="checkout.cityPh" placeholder="City or area" />
+              </label>
+              <label class="checkout-field checkout-field-full">
+                <span data-i18n="checkout.notes">Delivery notes (optional)</span>
+                <textarea name="notes" rows="3" data-i18n-placeholder="checkout.notesPh" placeholder="Any special instructions for delivery"></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="checkout-block">
+            <h2 class="checkout-block-title" data-i18n="checkout.paymentTitle">Payment Method</h2>
+            <div class="checkout-payment-options">
+              <label class="checkout-payment-option">
+                <input type="radio" name="payment" value="cod" checked />
+                <span class="checkout-payment-card">
+                  <strong data-i18n="checkout.payCod">Cash on Delivery</strong>
+                  <small data-i18n="checkout.payCodSub">Pay when your books arrive</small>
+                </span>
+              </label>
+              <label class="checkout-payment-option">
+                <input type="radio" name="payment" value="bank" />
+                <span class="checkout-payment-card">
+                  <strong data-i18n="checkout.payBank">Bank Transfer</strong>
+                  <small data-i18n="checkout.payBankSub">Details sent by email after ordering</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg checkout-submit" data-i18n="checkout.placeOrder">Place Order</button>
+        </form>
+      </div>
+
+      <aside class="checkout-summary">
+        <div class="checkout-summary-inner">
+          <h2 class="checkout-summary-title" data-i18n="checkout.summaryTitle">Order Summary</h2>
+          <div class="checkout-summary-items" id="checkoutSummaryItems"></div>
+          <div class="checkout-summary-lines">
+            <div class="checkout-summary-line">
+              <span data-i18n="checkout.subtotal">Subtotal</span>
+              <span id="checkoutSubtotal">AED 0</span>
+            </div>
+            <div class="checkout-summary-line">
+              <span data-i18n="checkout.shipping">Shipping</span>
+              <span id="checkoutShipping" data-i18n="checkout.shippingFree">Free</span>
+            </div>
+            <div class="checkout-summary-line checkout-summary-total">
+              <span data-i18n="cart.total">Total</span>
+              <strong id="checkoutGrandTotal">AED 0</strong>
+            </div>
+          </div>
+          <p class="checkout-summary-note" data-i18n="checkout.summaryNote">All prices in AED. Physical books shipped within the UAE.</p>
+          <a href="store.html" class="checkout-back-link" data-i18n="checkout.backStore">← Continue shopping</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo">
+          <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+          <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        </a>
+        <p class="footer-brand-desc" data-i18n="footer.desc">A structured, joyful Arabic curriculum built for children — from the very first letter to confident reading and writing.</p>
+        <div class="footer-socials">
+          <div class="social-icon" title="Instagram">📸</div>
+          <div class="social-icon" title="YouTube">▶</div>
+          <div class="social-icon" title="TikTok">♪</div>
+          <div class="social-icon" title="Facebook">f</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.learn">Learn</div>
+        <ul class="footer-links">
+          <li><a href="curriculum.html" data-i18n="footer.curriculumOverview">Curriculum Overview</a></li>
+          <li><a href="curriculum.html#level-1" data-i18n="footer.level1">Level 1 — The Letters</a></li>
+          <li><a href="learn.html" data-i18n="footer.whatWeOffer">What We Offer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.shop">Shop</div>
+        <ul class="footer-links">
+          <li><a href="store.html">حروفي العربية</a></li>
+          <li><a href="store.html">دراما الحروف</a></li>
+          <li><a href="store.html">قصص الحروف</a></li>
+          <li><a href="store.html">شجرة الحروف</a></li>
+          <li><a href="store.html">خطي الجميل</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.company">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-i18n="footer.aboutFounder">About the Founder</a></li>
+          <li><a href="about.html" data-i18n="footer.ourMethod">Our Method</a></li>
+          <li><a href="contact.html" data-i18n="footer.contactUs">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 MyLettersSpeak · All rights reserved</span>
+      <span class="footer-arabic">بسم الله الرحمن الرحيم</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

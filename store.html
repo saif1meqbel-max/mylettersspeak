@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Store — MyLettersSpeak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page-title="title.store">
+
+<div class="page-letter-rain" id="rainCanvas" aria-hidden="true"></div>
+<div class="page-content">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+      <div class="logo-text">
+        <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        <span class="logo-tagline" data-i18n="nav.tagline">Where Letters Come Alive</span>
+      </div>
+    </a>
+    <div class="header-center">
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="curriculum.html" data-i18n="nav.curriculum">Curriculum</a></li>
+        <li><a href="store.html" class="active" data-i18n="nav.store">Store</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><button type="button" id="langToggle" class="lang-toggle nav-arabic" data-i18n="nav.lang.ar">العربية</button></li>
+      </ul>
+      <div class="header-search">
+        <input type="search" placeholder="Search…" aria-label="Search site" data-i18n-placeholder="nav.search" data-i18n-aria="nav.search" />
+        <span class="header-search-icon" aria-hidden="true">⌕</span>
+      </div>
+      <div class="nav-actions">
+        <div class="level-dropdown" id="levelDropdown">
+          <button type="button" class="level-dropdown-btn" id="levelDropdownBtn" data-i18n="nav.selectLevel" aria-expanded="false" aria-haspopup="true">Select a Level ▾
+          </button>
+          <ul class="level-dropdown-menu" role="menu">
+            <li role="none"><a href="curriculum.html#level-1" role="menuitem" data-i18n="nav.l1">Level 1 — Al-Huroof<span data-i18n="nav.l1sub">28 letters, all forms, pronunciation</span></a></li>
+            <li role="none"><a href="curriculum.html#level-2" role="menuitem" data-i18n="nav.l2">Level 2 — Al-Kalimat<span data-i18n="nav.l2sub">Vowels, joining rules, first vocabulary</span></a></li>
+            <li role="none"><a href="curriculum.html#level-3" role="menuitem" data-i18n="nav.l3">Level 3 — Al-Jumla<span data-i18n="nav.l3sub">Grammar patterns, sentence building</span></a></li>
+            <li role="none"><a href="curriculum.html#level-4" role="menuitem" data-i18n="nav.l4">Level 4 — Al-Nass<span data-i18n="nav.l4sub">Reading passages with comprehension</span></a></li>
+            <li role="none"><a href="curriculum.html#level-5" role="menuitem" data-i18n="nav.l5">Level 5 — Al-Fasaha<span data-i18n="nav.l5sub">Fluent reading, writing, and expression</span></a></li>
+          </ul>
+        </div>
+        <div class="cart-wrap" id="cartWrap">
+          <button type="button" class="cart-btn" id="cartBtn" aria-expanded="false" aria-controls="cartPanel" data-i18n-aria="cart.label" aria-label="Shopping cart">
+            <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"/><path d="M6 6L5 3H2"/>
+            </svg>
+            <span class="cart-count" id="cartCount" hidden>0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer" id="cartPanel" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" data-i18n="cart.title">Your Cart</h2>
+      <button type="button" class="cart-close" id="cartClose" data-i18n-aria="cart.close" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-drawer-body" id="cartItems"></div>
+    <div class="cart-drawer-footer" id="cartFooter" hidden>
+      <div class="cart-total-row"><span data-i18n="cart.total">Total</span><strong id="cartTotal">AED 0</strong></div>
+      <a href="checkout.html" class="btn btn-primary btn-lg cart-checkout" data-i18n="cart.checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+</nav>
+
+<header class="page-hero hero-green">
+  <span class="page-hero-label" data-i18n="store.heroLabel">The Learning Library</span>
+  <h1 class="page-hero-title" data-i18n="store.heroTitle">Our Books — Available Now.</h1>
+  <p class="page-hero-sub" data-i18n="store.heroSub">Physical workbooks by Nahed Tuffaha — designed for young Arabic learners.</p>
+</header>
+<section class="store-section" id="store">
+  <div class="container">
+    <div class="product-grid">
+      <div class="product-card" data-product-id="huroofi" data-price="49" data-reveal data-delay="1">
+        <div class="product-thumb">
+          <img class="product-cover" src="assets/books/huroofi-al-arabiya.jpg" alt="حروفي العربية book cover" loading="lazy" />
+          <div class="product-tag tag-new" data-i18n="store.tagAges4">Ages 4+</div>
+        </div>
+        <div class="product-body">
+          <div class="product-format" data-i18n="store.p1format">Physical Workbook · Preschool</div>
+          <div class="product-name-ar">حروفي العربية</div>
+          <div class="product-name" data-i18n="store.p1name">My Arabic Letters</div>
+          <p class="product-desc" data-i18n="store.p1desc">Kindergarten preparation that introduces Arabic letters through playful illustrations — flowers, bees, and letter patterns that make each character memorable. By Nahed Tuffaha, illustrated by Alia Tuffaha.</p>
+          <div class="product-footer">
+            <div class="product-price"><span class="currency">AED</span> 49</div>
+            <button class="add-to-cart" aria-label="Add My Arabic Letters to cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-product-id="drama" data-price="55" data-reveal data-delay="2">
+        <div class="product-thumb">
+          <img class="product-cover" src="assets/books/drama-al-huroof.jpg" alt="دراما الحروف book cover" loading="lazy" />
+          <div class="product-tag tag-new" data-i18n="store.tagAges5">Ages 5+</div>
+        </div>
+        <div class="product-body">
+          <div class="product-format" data-i18n="store.p2format">Physical Workbook · Phonics</div>
+          <div class="product-name-ar">دراما الحروف</div>
+          <div class="product-name" data-i18n="store.p2name">Drama of the Letters</div>
+          <p class="product-desc" data-i18n="store.p2desc">The art of acting out letter sounds — children learn Arabic phonics through movement, mime, and fun “action” scenes. A creative way to master pronunciation before reading begins.</p>
+          <div class="product-footer">
+            <div class="product-price"><span class="currency">AED</span> 55</div>
+            <button class="add-to-cart" aria-label="Add Drama of the Letters to cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-product-id="stories" data-price="65" data-reveal data-delay="3">
+        <div class="product-thumb">
+          <img class="product-cover" src="assets/books/three-stories.jpg" alt="قصص الحروف book cover" loading="lazy" />
+          <div class="product-tag tag-best" data-i18n="store.tagStudent">Student Book</div>
+        </div>
+        <div class="product-body">
+          <div class="product-format" data-i18n="store.p3format">Physical · 80 Pages · Ages 5+</div>
+          <div class="product-name-ar">قصص الحروف</div>
+          <div class="product-name" data-i18n="store.p3name">Stories of the Letters</div>
+          <p class="product-desc" data-i18n="store.p3desc">Once upon a time… each Arabic letter comes alive in a charming story. The student workbook that connects imagination with the alphabet — written and designed by Nahed Tuffaha.</p>
+          <div class="product-footer">
+            <div class="product-price"><span class="currency">AED</span> 65</div>
+            <button class="add-to-cart" aria-label="Add Stories of the Letters to cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-product-id="tree" data-price="75" data-reveal data-delay="4">
+        <div class="product-thumb">
+          <img class="product-cover" src="assets/books/cover-nahid.jpg" alt="شجرة الحروف book cover" loading="lazy" />
+          <div class="product-tag tag-best" data-i18n="store.tagBest">Bestseller</div>
+        </div>
+        <div class="product-body">
+          <div class="product-format" data-i18n="store.p4format">Physical · 91 Pages · Ages 7+</div>
+          <div class="product-name-ar">شجرة الحروف</div>
+          <div class="product-name" data-i18n="store.p4name">The Tree of Letters</div>
+          <p class="product-desc" data-i18n="store.p4desc">Reading and writing made sequential and simple — for native and non-native speakers alike. Letters grow on a tree with vowels and forms, building literacy step by step.</p>
+          <div class="product-footer">
+            <div class="product-price"><span class="currency">AED</span> 75</div>
+            <button class="add-to-cart" aria-label="Add The Tree of Letters to cart">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card" data-product-id="handwriting" data-price="59" data-reveal data-delay="5">
+        <div class="product-thumb">
+          <img class="product-cover" src="assets/books/khatti-al-jameel.jpg" alt="خطي الجميل book cover" loading="lazy" />
+          <div class="product-tag tag-new" data-i18n="store.tagAges5">Ages 5+</div>
+        </div>
+        <div class="product-body">
+          <div class="product-format" data-i18n="store.p5format">Physical Workbook · Handwriting</div>
+          <div class="product-name-ar">خطي الجميل</div>
+          <div class="product-name" data-i18n="store.p5name">My Beautiful Handwriting</div>
+          <p class="product-desc" data-i18n="store.p5desc">My Journey with Arabic Calligraphy — a guided handwriting book where children practice letter forms with watercolor-inspired artwork. Authored and designed by Nahed Tuffaha.</p>
+          <div class="product-footer">
+            <div class="product-price"><span class="currency">AED</span> 59</div>
+            <button class="add-to-cart" aria-label="Add My Beautiful Handwriting to cart">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo">
+          <img class="logo-mark" src="assets/logo.png" alt="MyLettersSpeak" data-i18n-alt="brand.alt" />
+          <span class="logo-name" data-i18n-html="brand.name">My<em>Letters</em>Speak</span>
+        </a>
+        <p class="footer-brand-desc" data-i18n="footer.desc">A structured, joyful Arabic curriculum built for children — from the very first letter to confident reading and writing.</p>
+        <div class="footer-socials">
+          <div class="social-icon" title="Instagram">📸</div>
+          <div class="social-icon" title="YouTube">▶</div>
+          <div class="social-icon" title="TikTok">♪</div>
+          <div class="social-icon" title="Facebook">f</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.learn">Learn</div>
+        <ul class="footer-links">
+          <li><a href="curriculum.html" data-i18n="footer.curriculumOverview">Curriculum Overview</a></li>
+          <li><a href="curriculum.html#level-1" data-i18n="footer.level1">Level 1 — The Letters</a></li>
+          <li><a href="learn.html" data-i18n="footer.whatWeOffer">What We Offer</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.shop">Shop</div>
+        <ul class="footer-links">
+          <li><a href="store.html">حروفي العربية</a></li>
+          <li><a href="store.html">دراما الحروف</a></li>
+          <li><a href="store.html">قصص الحروف</a></li>
+          <li><a href="store.html">شجرة الحروف</a></li>
+          <li><a href="store.html">خطي الجميل</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-i18n="footer.company">Company</div>
+        <ul class="footer-links">
+          <li><a href="about.html" data-i18n="footer.aboutFounder">About the Founder</a></li>
+          <li><a href="about.html" data-i18n="footer.ourMethod">Our Method</a></li>
+          <li><a href="contact.html" data-i18n="footer.contactUs">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 MyLettersSpeak · All rights reserved</span>
+      <span class="footer-arabic">بسم الله الرحمن الرحيم</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
