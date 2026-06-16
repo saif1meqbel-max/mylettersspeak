@@ -305,6 +305,17 @@ body.cart-open { overflow: hidden; }
 .hero-carousel {
   position: relative; width: 100%; height: 75vh; min-height: 480px; max-height: 820px;
   overflow: hidden; background: var(--c-blue);
+  transition: height 0.5s var(--ease-out);
+}
+.hero-carousel:has(.slide-photo-1.active) {
+  height: min(85vh, calc(100vw * 768 / 1024));
+  min-height: 280px;
+  max-height: 820px;
+}
+.hero-carousel:has(.slide-photo-2.active) {
+  height: min(85vh, calc(100vw * 1019 / 1024));
+  min-height: 280px;
+  max-height: 820px;
 }
 .carousel-track { position: relative; width: 100%; height: 100%; }
 .carousel-slide {
@@ -313,8 +324,12 @@ body.cart-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: center; text-align: center;
   padding: 48px clamp(20px, 4vw, 48px);
 }
-.carousel-slide.slide-photo { align-items: flex-end; }
+.carousel-slide.slide-photo { align-items: flex-end; padding: 0; }
 .carousel-slide.active { opacity: 1; visibility: visible; z-index: 1; }
+.carousel-slide-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; object-position: center; z-index: 0;
+}
 .carousel-slide::before {
   content: ''; position: absolute; inset: 0;
   background: rgba(0,0,0,0.35); z-index: 1;
@@ -330,12 +345,10 @@ body.cart-open { overflow: hidden; }
 .slide-bg-3 { background: var(--c-red); }
 .slide-bg-4 { background: var(--c-yellow); }
 .slide-bg-5 { background: var(--c-blue); }
-.slide-photo { background-color: var(--c-navy); background-size: cover; background-position: center; }
+.slide-photo { background: #2a2a2a; }
 .slide-photo::after { display: none; }
-.slide-photo::before { background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.25) 100%); }
-.slide-photo-1 { background-image: url('assets/slideshow/student-writing-1.png'); }
-.slide-photo-2 { background-image: url('assets/slideshow/student-writing-2.png'); }
-.slide-photo .carousel-content { margin-top: auto; padding-bottom: 72px; width: 100%; }
+.slide-photo::before { background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%); z-index: 1; }
+.slide-photo .carousel-content { margin-top: auto; padding: 0 clamp(20px, 4vw, 48px) 72px; width: 100%; z-index: 2; }
 .slide-photo .carousel-title { text-shadow: 0 2px 24px rgba(0,0,0,0.45); }
 .slide-photo .carousel-sub { text-shadow: 0 1px 12px rgba(0,0,0,0.4); }
 .slide-bg-4 .carousel-title,
@@ -990,6 +1003,14 @@ footer .logo-name em { color: rgba(255,255,255,0.55); }
   }
   .cart-btn { width: 44px; height: 44px; }
   .hero-carousel { height: 55vh; min-height: 340px; }
+  .hero-carousel:has(.slide-photo-1.active) {
+    height: min(70vh, calc(100vw * 768 / 1024));
+    min-height: 240px;
+  }
+  .hero-carousel:has(.slide-photo-2.active) {
+    height: min(70vh, calc(100vw * 1019 / 1024));
+    min-height: 240px;
+  }
   .carousel-title { font-size: clamp(24px, 7vw, 36px); }
   .carousel-content { padding: 0 20px 80px; }
   .page-hero { padding: 40px 20px; }
