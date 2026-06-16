@@ -313,6 +313,7 @@ body.cart-open { overflow: hidden; }
   display: flex; align-items: center; justify-content: center; text-align: center;
   padding: 48px clamp(20px, 4vw, 48px);
 }
+.carousel-slide.slide-photo { align-items: flex-end; }
 .carousel-slide.active { opacity: 1; visibility: visible; z-index: 1; }
 .carousel-slide::before {
   content: ''; position: absolute; inset: 0;
@@ -329,6 +330,14 @@ body.cart-open { overflow: hidden; }
 .slide-bg-3 { background: var(--c-red); }
 .slide-bg-4 { background: var(--c-yellow); }
 .slide-bg-5 { background: var(--c-blue); }
+.slide-photo { background-color: var(--c-navy); background-size: cover; background-position: center; }
+.slide-photo::after { display: none; }
+.slide-photo::before { background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.25) 100%); }
+.slide-photo-1 { background-image: url('assets/slideshow/student-writing-1.png'); }
+.slide-photo-2 { background-image: url('assets/slideshow/student-writing-2.png'); }
+.slide-photo .carousel-content { margin-top: auto; padding-bottom: 72px; width: 100%; }
+.slide-photo .carousel-title { text-shadow: 0 2px 24px rgba(0,0,0,0.45); }
+.slide-photo .carousel-sub { text-shadow: 0 1px 12px rgba(0,0,0,0.4); }
 .slide-bg-4 .carousel-title,
 .slide-bg-4 .carousel-sub { color: var(--c-ink); text-shadow: none; }
 .slide-bg-4 .carousel-cta { background: var(--c-ink); color: #fff; }
@@ -728,6 +737,37 @@ section { padding: var(--section-pad) 0; }
 .method-title { font-weight: 700; font-size: 18px; color: var(--c-navy); margin-bottom: var(--space-3); }
 .method-desc { font-size: 15px; color: var(--c-muted); line-height: 1.7; }
 
+/* CURRICULUM PAGE SECTIONS */
+.curr-books-section { background: var(--rain-bg); padding: var(--section-pad) 0; border-top: 1px solid var(--c-border); }
+.curr-books-section .section-label { color: var(--c-green); }
+.curr-books-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+.curr-book-card {
+  background: var(--c-white); border: 1px solid var(--c-border); border-radius: var(--r-lg);
+  padding: var(--space-6); box-shadow: var(--sh-sm);
+  transition: transform var(--duration), box-shadow var(--duration);
+}
+.curr-book-card:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
+.curr-book-card:nth-child(1) { border-top: 4px solid var(--c-red); }
+.curr-book-card:nth-child(2) { border-top: 4px solid var(--c-yellow); }
+.curr-book-card:nth-child(3) { border-top: 4px solid var(--c-green); }
+.curr-book-card:nth-child(4) { border-top: 4px solid var(--c-blue); }
+.curr-book-num {
+  font-family: var(--f-arabic); font-size: 28px; font-weight: 700;
+  color: var(--c-blue); margin-bottom: var(--space-3); direction: rtl;
+}
+.curr-book-title { font-weight: 700; font-size: 18px; color: var(--c-navy); margin-bottom: var(--space-3); }
+.curr-book-desc { font-size: 14px; color: var(--c-muted); line-height: 1.65; }
+.curr-goals-section { padding: var(--section-pad) 0; background: #fff; }
+.curr-goals-section .section-label { color: var(--c-red); }
+.curr-goals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.curr-approach-section { background: var(--rain-bg); padding: var(--section-pad) 0; border-top: 1px solid var(--c-border); }
+.curr-approach-section .section-label { color: var(--c-blue); }
+.curr-approach-section .method-grid { grid-template-columns: repeat(2, 1fr); }
+.curr-approach-section .method-card:nth-child(4) { background: var(--c-blue); }
+.curr-approach-section .method-card:nth-child(4) .method-title,
+.curr-approach-section .method-card:nth-child(4) .method-desc { color: #fff; }
+.curr-approach-section .method-card:nth-child(4) .method-num-bg { color: rgba(255,255,255,0.35); }
+
 /* AUDIENCE & METHODOLOGY (from pitch deck) */
 .audience-section { background: var(--rain-bg); padding: var(--section-pad) 0; border-top: 1px solid var(--c-border); }
 .audience-header { text-align: center; max-width: 640px; margin: 0 auto var(--space-8); }
@@ -972,6 +1012,10 @@ footer .logo-name em { color: rgba(255,255,255,0.55); }
   .value-card { flex-direction: column; }
   .product-grid { grid-template-columns: 1fr; }
   .method-grid { grid-template-columns: 1fr; }
+  .curr-books-grid { grid-template-columns: 1fr; }
+  .curr-goals-grid { grid-template-columns: 1fr; }
+  .curr-approach-section .method-grid { grid-template-columns: 1fr; }
+  .slide-photo .carousel-content { padding-bottom: 88px; }
   .audience-grid { grid-template-columns: 1fr; }
   .cred-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
