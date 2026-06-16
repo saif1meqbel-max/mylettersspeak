@@ -1006,7 +1006,6 @@ footer .logo-name em { color: rgba(255,255,255,0.55); }
   .curr-books-grid { grid-template-columns: 1fr; }
   .curr-goals-grid { grid-template-columns: 1fr; }
   .curr-approach-section .method-grid { grid-template-columns: 1fr; }
-  .slide-photo .carousel-content { padding-bottom: 88px; }
   .audience-grid { grid-template-columns: 1fr; }
   .cred-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
